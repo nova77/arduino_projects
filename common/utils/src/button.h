@@ -23,6 +23,7 @@ class Button {
   typedef void (*CallbackFn)();  // the callback function is just void f();
 
  public:
+  // Set up button. Any digital pin is accepted.
   explicit Button(uint8_t pin) : pin_(pin), button_down_(0) {}
 
   // To call in main's "void setup()".

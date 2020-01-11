@@ -11,13 +11,14 @@ static Audio audio(/*analog_pin=*/A0);
 static RunningAvgRgbLed rgb_led(RgbLed::LT_CATHODE,  //
                                 /*red_pin=*/9, /*green_pin=*/10,
                                 /*blue_pin=*/11);
-static Button button(/*pin=*/7);
+static Button button(/*pin=*/2);
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600);  // just for debugging
   delay(5);
 
   Serial.println("******* Setup *******");
+  pinMode(LED_BUILTIN, OUTPUT);  
   audio.setup();
   rgb_led.setup();
   button.setup();
@@ -32,7 +33,11 @@ void loop() {
     // Flick the LED to give indication of the current intensity.
     auto intensity = audio.get_mapped_sensitivity();
     rgb_led.set(0, 255, 0, intensity * .8);
+    // Same with the builtin led as additional feedback.
+    digitalWrite(LED_BUILTIN, HIGH);
+
     delay(500);
+    digitalWrite(LED_BUILTIN, LOW);
     rgb_led.clear();
   });
 
