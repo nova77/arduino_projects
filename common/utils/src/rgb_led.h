@@ -28,14 +28,14 @@ class RgbLed {
  public:
   // The type of LED. Cathode is the one in the Arduino Kit (I think).
   enum eLedType {
-    LT_CATHODE,  // long pin is GND
-    LT_ANODE,    // long pin is +V
+    LT_CATHODE,  // Cathode LED: the long pin is GND.
+    LT_ANODE,    // Anode LED: the long pin is +V.
   };
 
   // Note: the pins which allow brightness are: 3, 5, 6, 9, 10, 11
   RgbLed(eLedType type, uint8_t red_pin, uint8_t green_pin, uint8_t blue_pin);
 
-  // To call in your "void setup()".
+  // To call in main's "void setup()".
   void setup() const;
 
   // Set the value of the RGB LED.

@@ -25,6 +25,7 @@ class Button {
  public:
   explicit Button(uint8_t pin) : pin_(pin), button_down_(0) {}
 
+  // To call in main's "void setup()".
   void setup() const;
 
   // Run the loop for the button. Will run the callback
