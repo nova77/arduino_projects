@@ -7,10 +7,6 @@
 const float Audio::sensitivity_levels_[] = {0.5, 1.0, 2.0};
 constexpr uint8_t default_sensitivity_idx = 1;
 
-// If true it will log stuff. Useful for debugging.
-// TODO: add debug levels?
-constexpr bool DEBUGGING_LOGS = true;
-
 //////////////////////////////////////////////////////
 
 template <typename T, typename ResType = T>
@@ -67,10 +63,13 @@ void Audio::next_sensitivity() {
 
   clear_loudness_window();
 
+#ifdef SERIAL_DBG
   Serial.print("New sensitivity level [");
   Serial.print(sensitivity_idx_);
   Serial.print("]: ");
   Serial.println(get_sensitivity_level());
+#endif // SERIAL_DBG
+
 }
 
 void Audio::print_loudness_window() const {
@@ -111,7 +110,7 @@ float Audio::get_volume() const {
 
   // Update volts with sensitivity level and constraint between 0 and 1.
   float volume = constrain(volts * get_sensitivity_level(), 0, 1);
-  if constexpr (DEBUGGING_LOGS) {
+#ifdef SERIAL_DBG
     if (volume > 0.05) {
       Serial.print("volume: ");
       Serial.print(volume);
@@ -121,7 +120,7 @@ float Audio::get_volume() const {
       }
       Serial.println();
     }
-  }
+#endif  // SERIAL_DBG
 
   return volume;
 }

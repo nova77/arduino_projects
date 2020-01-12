@@ -14,10 +14,12 @@ static RunningAvgRgbLed rgb_led(RgbLed::LT_ANODE,  //
 static Button button(/*pin=*/2);
 
 void setup() {
+#ifdef SERIAL_DBG
   Serial.begin(9600);  // just for debugging
   delay(5);
-
   Serial.println("******* Setup *******");
+#endif  // SERIAL_DBG
+
   pinMode(LED_BUILTIN, OUTPUT);  
   audio.setup();
   rgb_led.setup();
