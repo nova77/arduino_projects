@@ -20,5 +20,5 @@ void loop() {
   delay(1000);
 
   rgb_led.clear();
-  delay(3000);
+  delay(2000);
 }
