@@ -8,7 +8,7 @@
 // Components settings
 
 static Audio audio(/*analog_pin=*/A0);
-static RunningAvgRgbLed rgb_led(RgbLed::LT_CATHODE,  //
+static RunningAvgRgbLed rgb_led(RgbLed::LT_ANODE,  //
                                 /*red_pin=*/9, /*green_pin=*/10,
                                 /*blue_pin=*/11);
 static Button button(/*pin=*/2);
